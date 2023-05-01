@@ -1,5 +1,5 @@
-import { TodoList } from '@appTypes';
-import { LocalStorageKeys } from '@constants';
+import { LocalStorageKeys } from 'common/constants';
+import { TodoList } from 'common/types';
 
 export const setTodos = (todos: string) =>
   localStorage.setItem(LocalStorageKeys.todos, todos);

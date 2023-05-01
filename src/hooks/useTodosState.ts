@@ -1,13 +1,17 @@
 import { useCallback, useMemo } from 'react';
 import { useRecoilState } from 'recoil';
+import { useSearchParams } from 'react-router-dom';
 
 import { taskerState } from 'atoms';
-import { TodoTypes } from '@constants';
-import { TodoList, Todo } from '@appTypes';
-import { setTodos, removeItemAtIndex, replaceItemAtIndex } from 'utils';
+import { TodoTypes } from 'common/constants';
+import { TodoList, Todo } from 'common/types';
+import { setTodos, removeItemAtIndex, replaceItemAtIndex } from 'common/utils';
 
 const useTodosState = () => {
+  const [searchParams] = useSearchParams();
   const [todos, setTodoList] = useRecoilState(taskerState);
+
+  const filter = useMemo(() => searchParams.get('filter'), [searchParams]);
 
   const handleSetTodoList = useCallback(
     (todoList: TodoList) => {
@@ -25,15 +29,20 @@ const useTodosState = () => {
 
       switch (todoType) {
         case TodoTypes.completed:
-          return todos.filter;
+          return todos.filter(t => t.completed);
         case TodoTypes.uncompleted:
-          return todos;
+          return todos.filter(t => !t.completed);
         case TodoTypes.overdue:
-          return todos;
+          return todos.filter(t => Date.parse(t.dueDate) < Date.now());
         default:
           return todos;
       }
     },
+    [todos],
+  );
+
+  const getTodoById = useCallback(
+    (id: string) => todos.find(t => t.id === id),
     [todos],
   );
 
@@ -75,6 +84,11 @@ const useTodosState = () => {
     [handleSetTodoList, todos],
   );
 
+  const filteredTodos = useMemo(
+    () => getTodos(Number(filter || 0)),
+    [filter, getTodos],
+  );
+
   return useMemo(
     () => ({
       todos,
@@ -83,8 +97,19 @@ const useTodosState = () => {
       setTodos: handleSetTodoList,
       updateTodo,
       removeTodo,
+      getTodoById,
+      filteredTodos,
     }),
-    [todos, addTodo, getTodos, removeTodo, updateTodo, handleSetTodoList],
+    [
+      todos,
+      addTodo,
+      getTodos,
+      removeTodo,
+      updateTodo,
+      getTodoById,
+      filteredTodos,
+      handleSetTodoList,
+    ],
   );
 };
 

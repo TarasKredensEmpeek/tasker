@@ -1,18 +1,16 @@
 import React from 'react';
-import { useRecoilValue } from 'recoil';
-
-import { taskerState } from 'atoms';
 
 import Todo from './TodoItem';
+import { useTodosState } from '../../hooks';
 
 const TodoList = () => {
-  const todos = useRecoilValue(taskerState);
+  const { filteredTodos } = useTodosState();
 
   return (
     <div className="todo-list">
       <ul>
-        {todos.map(todo => (
-          <Todo id={todo.id} key={todo.id} />
+        {filteredTodos.map(todo => (
+          <Todo id={todo.id} todoItem={todo} key={todo.id} />
         ))}
       </ul>
     </div>

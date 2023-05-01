@@ -20,15 +20,6 @@
     "baseUrl": "src",
     "paths": {
       "*": ["*"],
-      "src/*": ["*"],
-      "utils": ["utils"],
-      "atoms": ["atoms"],
-      "hooks": ["hooks"],
-      "appTypes": ["types"],
-      "@appTypes": ["types"],
-      "modules/*": ["modules/*"],
-      "selectors": ["selectors"],
-      "@constants": ["constants"],
     }
   },
   "include": ["src"],
