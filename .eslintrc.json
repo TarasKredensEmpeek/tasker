@@ -1,0 +1,111 @@
+{
+  "root": true,
+  "extends": [
+    "prettier",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:import/recommended",
+    "plugin:prettier/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "plugins": ["react", "import"],
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "ecmaVersion": 12,
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "sourceType": "module"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/resolver": {
+      "typescript": true,
+      "alias": {
+        "map": [["~", "./src"]],
+        "extensions": [".ts", ".tsx", ".d.ts"]
+      }
+    }
+  },
+  "rules": {
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "ts": "never",
+        "tsx": "never",
+        "js": "never",
+        "jsx": "never"
+      }
+    ],
+    "no-console": [
+      2,
+      {
+        "allow": [
+          "warn",
+          "error"
+        ]
+      }
+    ],
+    "implicit-arrow-linebreak": "off",
+    "operator-linebreak": "off",
+    "import/no-unresolved": "off",
+    "import/named": "off",
+    "react/display-name": "off",
+    "react/jsx-fragments": "off",
+    "react/prop-types": [
+      "warn",
+      {
+        "skipUndeclared": true
+      }
+    ],
+    "consistent-return": "warn",
+    "import/prefer-default-export": "off",
+    "react/require-default-props": "off",
+    "arrow-parens": [
+      2,
+      "as-needed"
+    ],
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "external",
+          "internal"
+        ],
+        "newlines-between": "always"
+      }
+    ],
+    "react/self-closing-comp": [
+      "error",
+      {
+        "component": true,
+        "html": true
+      }
+    ],
+    "arrow-body-style": "error",
+    "object-shorthand": "error",
+    "jsx-quotes": [
+      2,
+      "prefer-double"
+    ],
+    "react/jsx-boolean-value": [
+      2
+    ],
+    "react/jsx-curly-brace-presence": [
+      2
+    ],
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "ignoreRestSiblings": true
+      }
+    ],
+    "react/no-unescaped-entities": "off",
+    "@next/next/no-page-custom-font": "off"
+  },
+  "ignorePatterns": []
+}
