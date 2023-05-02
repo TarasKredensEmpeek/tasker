@@ -26,6 +26,12 @@ const useStyles = createUseStyles({
       boxShadow: '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)',
     },
   },
+  containerOverdue: {
+    backgroundColor: 'rgba(220,20,60,0.25)',
+  },
+  containerEditable: {
+    backgroundColor: 'rgba(0,20,60,0.25)',
+  },
   controls: {
     display: 'flex',
     justifyContent: 'space-between',

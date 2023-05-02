@@ -27,6 +27,9 @@ const useStyles = createUseStyles({
     justifyContent: 'flex-end',
     gap: 12,
   },
+  fieldContainer: {
+    marginBottom: 18,
+  },
   addButton: {
     alignSelf: 'flex-end',
     width: 100,
@@ -115,20 +118,22 @@ const TodoForm = () => {
 
   return (
     <div className={styles.container}>
-      <InputField name="title" control={control} placeholder="Title" />
+      <div className={styles.fieldContainer}>
+        <InputField name="title" control={control} placeholder="Title" />
+      </div>
 
-      <hr />
+      <div className={styles.fieldContainer}>
+        <InputField
+          multiple
+          name="description"
+          control={control}
+          placeholder="Type, what you want To Do..."
+        />
+      </div>
 
-      <InputField
-        multiple
-        name="description"
-        control={control}
-        placeholder="Type, what you want To Do..."
-      />
-
-      <hr />
-
-      <DateField name="dueDate" label="Due Date" control={control} />
+      <div className={styles.fieldContainer}>
+        <DateField name="dueDate" label="Due Date" control={control} />
+      </div>
 
       <div className={styles.buttonsContainer}>
         <button className={styles.addButton} onClick={handleSubmit(onSubmit)}>
