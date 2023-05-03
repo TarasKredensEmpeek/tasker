@@ -4,6 +4,7 @@ const useStyles = createUseStyles({
   container: {
     width: 600,
     padding: 10,
+    minHeight: 120,
     wordWrap: 'break-word',
     whiteSpace: 'pre-wrap',
     transition: 'box-shadow .3s',

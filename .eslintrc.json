@@ -11,7 +11,7 @@
   ],
   "plugins": ["react", "import"],
   "parserOptions": {
-    "project": "./tsconfig.json",
+    "project": "./tsconfig.paths.json",
     "ecmaVersion": 12,
     "ecmaFeatures": {
       "jsx": true
