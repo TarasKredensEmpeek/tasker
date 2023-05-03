@@ -25,7 +25,7 @@
     "import/resolver": {
       "typescript": true,
       "alias": {
-        "map": [["~", "./src"]],
+        "map": [["~", "."]],
         "extensions": [".ts", ".tsx", ".d.ts"]
       }
     }

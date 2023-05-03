@@ -1,8 +1,10 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
 
-import Todo from './TodoItem';
-import { useTodosState } from '../../hooks';
+import { useTodosState } from 'hooks';
+import { Todo } from 'common/types';
+
+import TodoItem from './TodoItem';
 
 const useStyles = createUseStyles({
   list: {
@@ -18,8 +20,8 @@ const TodoList = () => {
 
   return (
     <div className={list}>
-      {filteredTodos.map(todo => (
-        <Todo id={todo.id} todoItem={todo} key={todo.id} />
+      {filteredTodos.map((todo: Todo) => (
+        <TodoItem id={todo.id} todoItem={todo} key={todo.id} />
       ))}
     </div>
   );

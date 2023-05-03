@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "*": ["*", "src/*"],
+      "atoms": ["src/atoms"],
+      "hooks": ["src/hooks"],
+      "common/*": ["src/common/*"],
+      "modules/*": ["src/modules/*"],
+    }
+  },
+}

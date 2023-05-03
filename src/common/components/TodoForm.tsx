@@ -7,7 +7,7 @@ import { FieldValues, useForm } from 'react-hook-form';
 
 import DateField from 'common/components/form/DateField';
 import InputField from 'common/components/form/InputField';
-import useTodosState from 'hooks/useTodosState';
+import { useTodosState } from 'hooks';
 
 import { Todo } from '../types';
 

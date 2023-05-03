@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": ["es6", "dom", "dom.iterable", "esnext"],
+    "extends": "./tsconfig.paths.json",
+    "target": "es6",
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -18,9 +19,6 @@
     "strictNullChecks": true,
     "jsx": "react-jsx",
     "baseUrl": "src",
-    "paths": {
-      "*": ["*"],
-    }
   },
   "include": ["src"],
   "exclude": ["node_modules"]

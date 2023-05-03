@@ -3,7 +3,7 @@ import { RecoilRoot } from 'recoil';
 import { ThemeProvider, createUseStyles } from 'react-jss';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
-import Tasker from 'modules/Tasker';
+import Tasker from './modules/Tasker';
 
 const theme = {};
 
