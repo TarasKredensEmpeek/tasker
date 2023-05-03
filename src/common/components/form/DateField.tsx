@@ -30,7 +30,7 @@ const useStyles = createUseStyles({
 
 const DateField: FC<DateFieldProps> = ({ label, name, control }) => {
   const styles = useStyles();
-  const { field } = useController({ name, control });
+  const { field } = useController({ name, control, defaultValue: '' });
 
   return (
     <div className={styles.root}>
