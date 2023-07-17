@@ -84,6 +84,17 @@ const useTodosState = () => {
     [handleSetTodoList, todos],
   );
 
+  const toggleTodoComplete = useCallback(
+    (id: string) => {
+      const todo = getTodoById(id);
+      const completed = !todo?.completed;
+      const completedAt = completed ? new Date().toISOString() : undefined;
+
+      updateTodo({ ...(todo || {}), completed, completedAt } as Todo);
+    },
+    [getTodoById, updateTodo],
+  );
+
   const filteredTodos = useMemo(
     () => getTodos(Number(filter || 0)),
     [filter, getTodos],
@@ -99,6 +110,7 @@ const useTodosState = () => {
       removeTodo,
       getTodoById,
       filteredTodos,
+      toggleTodoComplete,
     }),
     [
       todos,
@@ -109,6 +121,7 @@ const useTodosState = () => {
       getTodoById,
       filteredTodos,
       handleSetTodoList,
+      toggleTodoComplete,
     ],
   );
 };

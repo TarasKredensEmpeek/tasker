@@ -16,7 +16,7 @@ interface TodoItemProps {
 const dateFormat = 'dd LLL yyyy';
 
 const TodoItem: FC<TodoItemProps> = ({ id, todoItem }) => {
-  const { removeTodo, updateTodo } = useTodosState();
+  const { removeTodo, toggleTodoComplete } = useTodosState();
   const [searchParams, setSearchParams] = useSearchParams();
 
   const { dueDate, completedAt, title, completed, description } = todoItem;
@@ -72,17 +72,14 @@ const TodoItem: FC<TodoItemProps> = ({ id, todoItem }) => {
   };
 
   const onComplete = () => {
-    const completed = !todoItem.completed;
-    const completedAt = completed ? new Date().toISOString() : undefined;
-
-    updateTodo({ ...todoItem, completed, completedAt });
+    toggleTodoComplete(id);
   };
 
   return (
-    <div className={containerClasses}>
+    <div className={containerClasses} title={`todo-${id}`}>
       <div className={styles.controls}>
         <input
-          id="check"
+          id="taskCompleted"
           type="checkbox"
           onChange={onComplete}
           name={title}
@@ -103,6 +100,7 @@ const TodoItem: FC<TodoItemProps> = ({ id, todoItem }) => {
       </div>
 
       <span
+        title={`todoTitle-${id}`}
         className={clsx(styles.title, { [styles.completedText]: completed })}
       >
         {title}

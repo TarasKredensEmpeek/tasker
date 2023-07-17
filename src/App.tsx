@@ -5,9 +5,9 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import Tasker from './modules/Tasker';
 
-const theme = {};
+export const theme = {};
 
-const router = createBrowserRouter([
+export const router = createBrowserRouter([
   {
     path: '/',
     element: <Tasker />,
@@ -31,7 +31,7 @@ const useStyles = createUseStyles({
   },
 });
 
-const GlobalInjection = () => {
+export const GlobalInjection = () => {
   useStyles();
   return null;
 };
