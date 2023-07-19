@@ -1,12 +1,9 @@
 import React from 'react';
-import { render, fireEvent, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import TodoFilter from 'common/components/TodoFilter';
 
-import { getWrapper } from '../../../helpers';
-
-const WrappedFilter = getWrapper({ children: <TodoFilter /> });
+import { render, fireEvent, screen, waitFor } from '../../test-utils';
 
 describe('TodoFilter', () => {
   afterAll(() => {
@@ -14,7 +11,7 @@ describe('TodoFilter', () => {
   });
 
   test('renders TodoFilter correctly', () => {
-    render(WrappedFilter);
+    render(<TodoFilter />);
 
     // Assert that all filter labels are rendered
     const filterLabels = screen.getAllByText(
@@ -28,14 +25,14 @@ describe('TodoFilter', () => {
   });
 
   test('changes the active filter when clicked', async () => {
-    const { rerender } = render(WrappedFilter);
+    const { rerender } = render(<TodoFilter />);
 
     ['Completed', 'Overdue'].map(async filterText => {
       // Click on the 'Completed' filter
       const completedFilter = screen.getByText(filterText);
       fireEvent.click(completedFilter);
 
-      rerender(WrappedFilter);
+      rerender(<TodoFilter />);
 
       await waitFor(() => {
         // Assert that the active filter has changed to 'Completed'

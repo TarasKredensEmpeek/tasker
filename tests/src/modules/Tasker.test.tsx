@@ -1,13 +1,10 @@
 import React from 'react';
-import { screen, fireEvent, render, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import Tasker from 'modules/Tasker';
 
+import { screen, fireEvent, render, waitFor } from '../test-utils';
 import { mockTodoItem } from '../../mocks';
-import { getWrapper } from '../../helpers';
-
-const WrappedForm = getWrapper({ children: <Tasker /> });
 
 const newTodo = mockTodoItem;
 
@@ -17,7 +14,7 @@ describe('Tasker', () => {
   });
 
   test('handles add todo', async () => {
-    render(WrappedForm);
+    render(<Tasker />);
 
     const titleNode = await screen.getByPlaceholderText('Title');
     const descriptionNode = await screen.getByPlaceholderText(
@@ -41,7 +38,7 @@ describe('Tasker', () => {
   });
 
   test('handle edit todo', async () => {
-    render(WrappedForm);
+    render(<Tasker />);
 
     const submitButtonNode = await screen.getByTitle('AddSubmit');
     const titleNode = await screen.getByTitle('Title');

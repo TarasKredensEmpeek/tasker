@@ -1,16 +1,13 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import TodoForm from 'common/components/TodoForm';
 
-import { getWrapper } from '../../../helpers';
-
-const WrappedForm = getWrapper({ children: <TodoForm /> });
+import { render, screen } from '../../test-utils';
 
 describe('TodoForm', () => {
   test('renders TodoForm correctly', async () => {
-    render(WrappedForm);
+    render(<TodoForm />);
 
     const titleNode = await screen.getByTitle('Title');
     const descriptionNode = await screen.getByTitle(

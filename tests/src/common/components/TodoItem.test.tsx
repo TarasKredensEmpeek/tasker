@@ -1,19 +1,18 @@
 import React from 'react';
-import { act, render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import TodoItem from 'common/components/TodoItem';
 import { Todo } from 'common/types';
 
+import { act, render, screen, fireEvent } from '../../test-utils';
 import { getUseTodoState, mockTodoItem } from '../../../mocks';
-import { getWrapper } from '../../../helpers';
 
-const todoItemWithWrappers = (item: Todo) =>
-  getWrapper({ children: <TodoItem id={String(item.id)} todoItem={item} /> });
+const RenderTodo = (item: Todo) => (
+  <TodoItem id={String(item.id)} todoItem={item} />
+);
 
 describe('TodoItem', () => {
-  const todoItemRenderer = (todoItem: Todo) =>
-    render(todoItemWithWrappers(todoItem));
+  const todoItemRenderer = (todoItem: Todo) => render(RenderTodo(todoItem));
 
   test('render todo item', () => {
     todoItemRenderer(mockTodoItem);
@@ -40,7 +39,7 @@ describe('TodoItem', () => {
     expect(todo?.completed).toBe(completed);
 
     if (todo) {
-      rerender(todoItemWithWrappers(todo));
+      rerender(RenderTodo(todo));
       expect(checkbox.checked).toBe(completed);
     }
   });
@@ -66,7 +65,7 @@ describe('TodoItem', () => {
     const newTodo = result.current.getTodoById(mockTodoItem.id);
 
     if (newTodo) {
-      rerender(todoItemWithWrappers(newTodo));
+      rerender(RenderTodo(newTodo));
       expect(todoTitle).toHaveTextContent(newTitle);
       // useful for global search
       // expect(screen.getByText(newTitle)).toBeInTheDocument();
