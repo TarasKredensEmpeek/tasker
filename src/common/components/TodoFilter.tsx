@@ -62,11 +62,13 @@ const TodoFilter = () => {
       {filters.map(filterParams => {
         const active = String(filterParams.value) === currentFilter;
 
+        const setCurrentFilter = () => setFilter(filterParams.value);
+
         return (
           <li key={filterParams.label}>
             <span
               className={clsx(styles.item, { [styles.itemActive]: active })}
-              onClick={() => setFilter(filterParams.value)}
+              onClick={setCurrentFilter}
             >
               {filterParams.label}
             </span>
