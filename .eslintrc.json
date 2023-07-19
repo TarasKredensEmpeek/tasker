@@ -42,7 +42,7 @@
       }
     ],
     "no-console": [
-      2,
+      1,
       {
         "allow": [
           "warn",
@@ -107,5 +107,5 @@
     "react/no-unescaped-entities": "off",
     "@next/next/no-page-custom-font": "off"
   },
-  "ignorePatterns": ["jest.config.js"]
+  "ignorePatterns": ["jest.config.js", "babel.config.js"]
 }

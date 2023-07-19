@@ -1,5 +1,5 @@
 {
-    "noUncheckedIndexedAccess": true,
+  "noUncheckedIndexedAccess": true,
   "compilerOptions": {
     "extends": "./tsconfig.paths.json",
     "target": "es6",

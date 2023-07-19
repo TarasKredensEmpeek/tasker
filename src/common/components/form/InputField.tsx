@@ -1,6 +1,6 @@
 import React, { FC, TextareaHTMLAttributes } from 'react';
-import { Control, useController } from 'react-hook-form';
 import { createUseStyles } from 'react-jss';
+import { Control, useController, UseControllerProps } from 'react-hook-form';
 
 const useStyles = createUseStyles({
   root: {
@@ -16,9 +16,9 @@ const useStyles = createUseStyles({
   },
 });
 
-interface InputFieldProps extends TextareaHTMLAttributes<any> {
+interface InputFieldProps extends TextareaHTMLAttributes<HTMLInputElement> {
   name: string;
-  rules?: any;
+  rules?: UseControllerProps['rules'];
   control: Control;
   multiple?: boolean;
   placeholder: string;
