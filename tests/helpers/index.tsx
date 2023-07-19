@@ -1,5 +1,5 @@
 import React, { ReactElement, ReactNode } from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 
 export const getWrapper = ({
@@ -7,7 +7,7 @@ export const getWrapper = ({
 }: {
   children?: ReactElement | ReactNode;
 }) => (
-  <BrowserRouter>
+  <MemoryRouter>
     <RecoilRoot>{children}</RecoilRoot>
-  </BrowserRouter>
+  </MemoryRouter>
 );

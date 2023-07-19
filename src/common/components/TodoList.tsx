@@ -19,9 +19,9 @@ const TodoList = () => {
   const { filteredTodos } = useTodosState();
 
   return (
-    <div className={list}>
+    <div className={list} title="todoList">
       {filteredTodos.map((todo: Todo) => (
-        <TodoItem id={todo.id} todoItem={todo} key={todo.id} />
+        <TodoItem id={String(todo.id)} todoItem={todo} key={todo.id} />
       ))}
     </div>
   );

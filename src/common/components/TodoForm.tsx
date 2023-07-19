@@ -117,39 +117,51 @@ const TodoForm = () => {
   }, [handleResetForm]);
 
   return (
-    <div className={styles.container}>
-      <div className={styles.fieldContainer}>
-        <InputField name="title" control={control} placeholder="Title" />
-      </div>
+    <form action="" onSubmit={handleSubmit(onSubmit)}>
+      <div className={styles.container}>
+        <div className={styles.fieldContainer}>
+          <InputField
+            name="title"
+            control={control}
+            placeholder="Title"
+            title="Title"
+          />
+        </div>
 
-      <div className={styles.fieldContainer}>
-        <InputField
-          multiple
-          name="description"
-          control={control}
-          placeholder="Type, what you want To Do..."
-        />
-      </div>
+        <div className={styles.fieldContainer}>
+          <InputField
+            multiple
+            name="description"
+            control={control}
+            title="Type, what you want To Do..."
+            placeholder="Type, what you want To Do..."
+          />
+        </div>
 
-      <div className={styles.fieldContainer}>
-        <DateField name="dueDate" label="Due Date" control={control} />
-      </div>
+        <div className={styles.fieldContainer}>
+          <DateField name="dueDate" label="Due Date" control={control} />
+        </div>
 
-      <div className={styles.buttonsContainer}>
-        <button className={styles.addButton} onClick={handleSubmit(onSubmit)}>
-          {editableItemId ? 'Save' : 'Add'}
-        </button>
-
-        {!!editableItemId && (
+        <div className={styles.buttonsContainer}>
           <button
-            className={clsx(styles.addButton, styles.cancelButton)}
-            onClick={handleCancelEdit}
+            type="submit"
+            className={styles.addButton}
+            title={editableItemId ? 'SaveSubmit' : 'AddSubmit'}
           >
-            CANCEL
+            {editableItemId ? 'Save' : 'Add'}
           </button>
-        )}
+
+          {!!editableItemId && (
+            <button
+              className={clsx(styles.addButton, styles.cancelButton)}
+              onClick={handleCancelEdit}
+            >
+              CANCEL
+            </button>
+          )}
+        </div>
       </div>
-    </div>
+    </form>
   );
 };
 

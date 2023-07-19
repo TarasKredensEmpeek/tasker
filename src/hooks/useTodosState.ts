@@ -33,7 +33,7 @@ const useTodosState = () => {
         case TodoTypes.uncompleted:
           return todos.filter(t => !t.completed);
         case TodoTypes.overdue:
-          return todos.filter(t => Date.parse(t.dueDate) < Date.now());
+          return todos.filter(t => Date.parse(t.dueDate || '') < Date.now());
         default:
           return todos;
       }

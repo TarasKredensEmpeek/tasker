@@ -24,7 +24,7 @@ const TodoItem: FC<TodoItemProps> = ({ id, todoItem }) => {
   const styles = useStyles();
 
   const isOverdue = useMemo(
-    () => Date.parse(dueDate) < Date.now() && !completed,
+    () => Date.parse(String(dueDate)) < Date.now() && !completed,
     [completed, dueDate],
   );
 
@@ -76,7 +76,12 @@ const TodoItem: FC<TodoItemProps> = ({ id, todoItem }) => {
   };
 
   return (
-    <div className={containerClasses} title={`todo-${id}`}>
+    <div
+      title={id}
+      className={containerClasses}
+      data-testid={`todo-${title}`}
+      id={id}
+    >
       <div className={styles.controls}>
         <input
           id="taskCompleted"
@@ -100,13 +105,14 @@ const TodoItem: FC<TodoItemProps> = ({ id, todoItem }) => {
       </div>
 
       <span
-        title={`todoTitle-${id}`}
+        title={title}
         className={clsx(styles.title, { [styles.completedText]: completed })}
       >
         {title}
       </span>
 
       <p
+        title={description}
         className={clsx(styles.description, {
           [styles.completedText]: completed,
         })}

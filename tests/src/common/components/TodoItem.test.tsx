@@ -1,36 +1,15 @@
 import React from 'react';
-import {
-  act,
-  render,
-  screen,
-  fireEvent,
-  renderHook,
-} from '@testing-library/react';
+import { act, render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import { useTodosState } from 'hooks';
 import TodoItem from 'common/components/TodoItem';
 import { Todo } from 'common/types';
 
-import { mockTodoItem } from '../../../mocks';
+import { getUseTodoState, mockTodoItem } from '../../../mocks';
 import { getWrapper } from '../../../helpers';
 
-const getUseTodoState = () => {
-  const renderedUseState = renderHook(useTodosState, { wrapper: getWrapper });
-
-  const { todos, addTodo } = renderedUseState.result.current;
-
-  if (!todos?.length) {
-    act(() => {
-      addTodo(mockTodoItem);
-    });
-  }
-
-  return renderedUseState;
-};
-
 const todoItemWithWrappers = (item: Todo) =>
-  getWrapper({ children: <TodoItem id={item.id} todoItem={item} /> });
+  getWrapper({ children: <TodoItem id={String(item.id)} todoItem={item} /> });
 
 describe('TodoItem', () => {
   const todoItemRenderer = (todoItem: Todo) =>
@@ -73,7 +52,7 @@ describe('TodoItem', () => {
     const editButton = screen.getByTitle('Edit');
     fireEvent.click(editButton);
 
-    const todoTitle = screen.getByTitle(`todoTitle-${mockTodoItem.id}`);
+    const todoTitle = screen.getByTitle(mockTodoItem.title);
     expect(todoTitle).toHaveTextContent(mockTodoItem.title);
     // another variant of search
     // expect(screen.getByText(mockTodoItem.title)).toBeTruthy();
@@ -95,14 +74,14 @@ describe('TodoItem', () => {
     }
   });
 
-  test('calls onDelete function when delete button is clicked', () => {
+  test('calls onDelete function when delete button is clicked', async () => {
     const { result } = getUseTodoState();
 
     todoItemRenderer(mockTodoItem);
     const deleteButton = screen.getByTitle('Delete');
     fireEvent.click(deleteButton);
 
-    const todoNode = screen.getByTitle(`todo-${mockTodoItem.id}`);
+    const todoNode = await screen.findByTestId(`todo-${mockTodoItem.title}`);
 
     expect(todoNode).toHaveStyle({ display: 'block' });
 

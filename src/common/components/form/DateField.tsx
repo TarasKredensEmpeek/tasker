@@ -36,7 +36,12 @@ const DateField: FC<DateFieldProps> = ({ label, name, control }) => {
     <div className={styles.root}>
       <span className={styles.label}>{label}</span>
 
-      <input type="date" {...field} className={styles.input} />
+      <input
+        title="New Due Date"
+        type="date"
+        {...field}
+        className={styles.input}
+      />
     </div>
   );
 };
